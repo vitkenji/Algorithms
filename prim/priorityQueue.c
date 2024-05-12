@@ -81,6 +81,6 @@ void heapDecreaseKey(int* array, int index, int key)
 void minHeapInsert(int* array, int* size, int key)
 {
     (*size)++;
-    array[(*size)] = -INT_MAX;
+    array[(*size)] = INT_MAX;
     heapDecreaseKey(array, *size - 1, key);
 }
