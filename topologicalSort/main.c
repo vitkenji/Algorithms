@@ -2,7 +2,7 @@
 
 int main()
 {
-    LGraph* G = createLGraph(7);
+    LGraph* G = createLGraph(8);
     InsertEdgeListDirectional( G, 0, 1);
     InsertEdgeListDirectional( G, 1, 2);
     InsertEdgeListDirectional( G, 2, 3);
@@ -10,7 +10,7 @@ int main()
     InsertEdgeListDirectional(G, 4, 5);
     InsertEdgeListDirectional(G, 5, 6);
     correctAdj(G);
-    printLGraph(G, 7);
+    printLGraph(G, 8);
     topologicalSort(G);
 
     return 0;

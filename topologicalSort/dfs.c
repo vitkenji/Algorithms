@@ -10,12 +10,12 @@ void DFS(LGraph* G)
     {
         G->adj[v]->color = WHITE;
     }
-
+    int i = 0;
     for(int u = 0; u < G->V; u++)
     {
         if(G->adj[u]->color == WHITE)
         {
-            int i = 0;
+
             DFSVisit(G, u, &i);
         }
     }
