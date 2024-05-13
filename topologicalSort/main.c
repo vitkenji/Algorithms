@@ -1,8 +1,8 @@
-#include "dfs.h"
+#include "topologicalSort.h"
 
 int main()
 {
-    LGraph* G = createLGraph(8);
+    LGraph* G = createLGraph(7);
     InsertEdgeListDirectional( G, 0, 1);
     InsertEdgeListDirectional( G, 1, 2);
     InsertEdgeListDirectional( G, 2, 3);
@@ -10,8 +10,8 @@ int main()
     InsertEdgeListDirectional(G, 4, 5);
     InsertEdgeListDirectional(G, 5, 6);
     correctAdj(G);
-    printLGraph(G, 8);
-    DFS(G);
+    printLGraph(G, 7);
+    topologicalSort(G);
 
     return 0;
 }

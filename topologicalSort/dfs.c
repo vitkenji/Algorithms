@@ -15,25 +15,30 @@ void DFS(LGraph* G)
     {
         if(G->adj[u]->color == WHITE)
         {
-            DFSVisit(G, u);
+            int i = 0;
+            DFSVisit(G, u, &i);
         }
     }
 }
 
-void DFSVisit(LGraph* G, int v)
+void DFSVisit(LGraph* G, int v, int* i)
 {
     G->adj[v]->color = GRAY;
+    G->adj[v] ->first = (*i);
+    (*i)++;
 
     Node* aux = G->adj[v];
     while(aux != NULL && aux->id != INT_MAX)
     {
         if(G->adj[aux->id]->color == WHITE)
         {
-            DFSVisit(G, aux->id);
+            DFSVisit(G, aux->id, i);
         }
         aux = aux->next;
     }
     G->adj[v]->color = BLACK;
-    printf("%d ", v);
+    G->adj[v]->second = (*i);
+    (*i)++;
+    printf("%d(%d/%d) ", v, G->adj[v]->first, G->adj[v]->second);
 
 }
