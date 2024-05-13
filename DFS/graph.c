@@ -121,3 +121,18 @@ void InsertEdgeList( LGraph* GrafoA, int data1, int data2){
    InsertEdgeListDirectional( GrafoA, data1, data2);
    InsertEdgeListDirectional( GrafoA, data2, data1);     
 }
+
+void correctAdj(LGraph* G)
+{
+    for(int v = 0; v < G->V; v++)
+    {
+        if(G->adj[v] == NULL)
+        {
+            Node* node = (Node*) malloc(sizeof(Node));
+            node->id = INT_MAX;
+            node->next = NULL;
+            G->adj[v] = node;
+            
+        }
+    }
+}

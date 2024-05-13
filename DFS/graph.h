@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 typedef struct node
 {
@@ -33,3 +34,4 @@ MGraph* createMGraph(int size);
 void insertWeightEdgeMatrix(MGraph* G, int v1, int v2, int weight);
 void insertEdgeMatrix(MGraph* G, int v1, int v2);
 
+void correctAdj(LGraph* G);

@@ -9,9 +9,8 @@ void DFS(LGraph* G)
     for(int v = 0; v < G->V; v++)
     {
         G->adj[v]->color = WHITE;
-        printf("%d = %d \n", v, G->adj[v]->color);
     }
-    int time = 0;
+
     for(int u = 0; u < G->V; u++)
     {
         if(G->adj[u]->color == WHITE)
@@ -24,9 +23,9 @@ void DFS(LGraph* G)
 void DFSVisit(LGraph* G, int v) //G->adj[v]->id != G->adj[v]->next
 {
     G->adj[v]->color = GRAY;
+
     Node* aux = G->adj[v];
-    
-    while(aux != NULL)
+    while(aux != NULL && aux->id != INT_MAX)
     {
         if(G->adj[aux->id]->color == WHITE)
         {
