@@ -3,8 +3,6 @@
 void topologicalSort(LGraph* G)
 {
     List* l = create();
-    DFS(G, &l);
-    printf("\n horizontal print ");
-    
+    DFS(G, &l); 
     printList(l);
 }
