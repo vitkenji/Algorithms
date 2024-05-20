@@ -16,7 +16,6 @@ void printLGraph(LGraph* G, int size)
     }
 }
 
-
 void printMGraph(MGraph* G, int size)
 {
    printf("Graph: \n");

@@ -3,7 +3,7 @@
 #define GRAY 1
 #define BLACK 2
 
-void DFS(LGraph* G)
+void DFS(LGraph* G, List** l)
 {
     printf("Vertices visited:\n");
     for(int v = 0; v < G->V; v++)
@@ -16,12 +16,12 @@ void DFS(LGraph* G)
         if(G->adj[u]->color == WHITE)
         {
 
-            DFSVisit(G, u, &i);
+            DFSVisit(G, l, u, &i);
         }
     }
 }
 
-void DFSVisit(LGraph* G, int v, int* i)
+void DFSVisit(LGraph* G, List** l, int v, int* i)
 {
     G->adj[v]->color = GRAY;
     G->adj[v] ->first = (*i);
@@ -32,13 +32,14 @@ void DFSVisit(LGraph* G, int v, int* i)
     {
         if(G->adj[aux->id]->color == WHITE)
         {
-            DFSVisit(G, aux->id, i);
+            DFSVisit(G, l, aux->id, i);
         }
         aux = aux->next;
     }
     G->adj[v]->color = BLACK;
     G->adj[v]->second = (*i);
     (*i)++;
+    *l = insert(*l, v);
     printf("%d(%d/%d) ", v, G->adj[v]->first, G->adj[v]->second);
 
 }
