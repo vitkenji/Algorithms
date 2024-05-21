@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 typedef struct node
 {
     int id;
     struct node* next;
-    int distance;
-    int parent;
-    int weight;
+    int color;
 
 }Node;
 
@@ -27,16 +24,12 @@ typedef struct Mgraph{
 }MGraph;
 
 void printLGraph(LGraph* G, int size);
-void printLGraphWeight(LGraph* G, int size);
 LGraph* createLGraph(int size);
 void InsertEdgeListDirectional(LGraph* GrafoA, int index, int data);
-void InsertWeightEdgeListDirectional(LGraph* GrafoA, int v1, int v2, int weight);
 void InsertEdgeList( LGraph* GrafoA, int data1, int data2);
-void InsertWeightEdgeList(LGraph* GrafoA, int data1, int data2, int weight);
 
 void printMGraph(MGraph* G, int size);
 MGraph* createMGraph(int size);
 void insertWeightEdgeMatrix(MGraph* G, int v1, int v2, int weight);
 void insertEdgeMatrix(MGraph* G, int v1, int v2);
 
-void correctAdj(LGraph* G);
