@@ -1,2 +1,2 @@
 all:
-	gcc main.c -o main
+	gcc main.c dijkstra.c graph.c heap.c priorityQueue.c -o main
