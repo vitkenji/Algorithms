@@ -98,3 +98,10 @@ void printArray(int* array, int size)
     }
     printf("\n");
 }
+
+void swapHeap(int* xp, int* yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}

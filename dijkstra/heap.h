@@ -11,3 +11,5 @@ void buildMinHeap(int* array, int size);
 
 void swap(int* array, int pos1, int pos2);
 void printArray(int* array, int size);
+
+void swapHeap(int* xp, int* yp);

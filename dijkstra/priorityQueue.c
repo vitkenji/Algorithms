@@ -64,6 +64,7 @@ int heapExtractMin(int* array, int* size)
 
 void heapDecreaseKey(int* array, int index, int key)
 {
+    
     if(key > array[index])
     {
         printf("new key is higher than actual key");
@@ -80,6 +81,7 @@ void heapDecreaseKey(int* array, int index, int key)
 
 void minHeapInsert(int* array, int* size, int key)
 {
+    if((*size) == 0){array[0] = INT_MAX;}
     (*size)++;
     array[(*size)] = INT_MAX;
     heapDecreaseKey(array, *size - 1, key);

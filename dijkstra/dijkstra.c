@@ -10,6 +10,7 @@ void initializeSingleSource(LGraph** G, int* queue, int* queueSize, int* visited
         minHeapInsert(queue, queueSize, v);
     }
     (*G)->adj[0]->distance = 0;
+    buildMinHeap(queue, *queueSize);
 }
 
 void dijkstra(LGraph* G, int s)
@@ -23,7 +24,6 @@ void dijkstra(LGraph* G, int s)
 
     while(queueSize > 0)
     {
-        
         int u = heapExtractMin(queue, &queueSize); // 0
         visited[u] = 1;
         Node* aux = G->adj[u];
@@ -37,15 +37,14 @@ void dijkstra(LGraph* G, int s)
                 smallest = weight;
                 smallestId = v;
             }
-
             if(G->adj[v]->distance > G->adj[u]->distance + weight)
             {
                 G->adj[v]->distance = G->adj[u]->distance + weight; 
                 G->adj[v]->parent = u;
             }
-            aux = aux->next;
-            
+            aux = aux->next;   
         };
+        
     }
     
     printf("Dijkstra: \n");
