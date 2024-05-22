@@ -1,2 +1,2 @@
 all:
-	gcc main.c heap.c -o main
+	gcc main.c heap.c priorityQueue.c -o main

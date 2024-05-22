@@ -23,6 +23,7 @@ int heapExtractMin(Heap* h, int* size)
 
 void heapDecreaseKey(Heap* h, int index, int v, int d)
 {
+
   if(d > h->distance[index])
     {
         printf("new key is higher than actual key");

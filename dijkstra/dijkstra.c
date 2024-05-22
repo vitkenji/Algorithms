@@ -1,52 +1,44 @@
 #include "dijkstra.h"
 
-void initializeSingleSource(LGraph** G, int* queue, int* queueSize, int* visited)
+void initializeSingleSource(LGraph** G, Heap* h, int* queueSize)
 {
     for(int v = 0; v < (*G)->V; v++)
     {
         (*G)->adj[v]->distance = INT_MAX;
-        (*G)->adj[v]->parent = -1;
-        visited[v] = 0;
-        minHeapInsert(queue, queueSize, v);
+        minHeapInsert(h, queueSize, v, (*G)->adj[v]->distance);
     }
     (*G)->adj[0]->distance = 0;
-    buildMinHeap(queue, *queueSize);
+    heapDecreaseKey(h, 0, 0, 0);
 }
 
 void dijkstra(LGraph* G, int s)
 {
-    int weight; int smallest, smallestId;
-    int* visited = (int*) malloc(sizeof(int)*G->V);
-    int* queue = (int*) malloc(sizeof(int)*G->V);
-    int queueSize= 0; int i = 0;
+    int weight;
+    Heap* h = createHeap(G->V);
+    int queueSize = 0;
 
-    initializeSingleSource(&G, queue, &queueSize, visited);
+    initializeSingleSource(&G, h, &queueSize);
 
     while(queueSize > 0)
     {
-        int u = heapExtractMin(queue, &queueSize); // 0
-        visited[u] = 1;
+        int u = heapExtractMin(h, &queueSize);
+
         Node* aux = G->adj[u];
-        smallest = aux->weight; smallestId = u;
+
         while(aux != NULL && aux->id != INT_MAX)
         {
             int v = aux->id;
             weight = aux->weight;
-            if(weight < smallest)
-            {
-                smallest = weight;
-                smallestId = v;
-            }
+
             if(G->adj[v]->distance > G->adj[u]->distance + weight)
             {
-                G->adj[v]->distance = G->adj[u]->distance + weight; 
-                G->adj[v]->parent = u;
+                G->adj[v]->distance = G->adj[u]->distance + weight;
+                heapDecreaseKey(h, findIndex(h, v, queueSize), v, G->adj[v]->distance);
             }
-            aux = aux->next;   
-        };
-        
+            aux = aux->next;
+        }
     }
-    
+
     printf("Dijkstra: \n");
     for(int v = 0; v < G->V; v++)
     {

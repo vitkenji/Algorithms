@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "priorityQueue.h"
 
 int main()
 {
@@ -11,14 +11,16 @@ int main()
     }
     h->distance[0] = 0;
     h->visited[0] = 1;
-
-    printArray(h->vertices, 10);
-    printArray(h->distance, 10);
-    printArray(h->visited, 10);
-    swap(h, 0, 1);
+    int size = 10;
+    buildMinHeap(h, 10);
     printf("\n");
     printArray(h->vertices, 10);
     printArray(h->distance, 10);
-    printArray(h->visited, 10);
+
+    minHeapInsert(h, &size, 11, 1);
+
+    printArray(h->vertices, size);
+    printArray(h->distance, size);
+
     return 0;
 }
