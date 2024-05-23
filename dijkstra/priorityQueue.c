@@ -42,6 +42,7 @@ void minHeapInsert(Heap* h, int* size, int v, int d)
     (*size)++;
     h->vertices[(*size)-1 ] = abs(INT_MAX);
     h->distance[(*size) - 1] = abs(INT_MAX);
+
     heapDecreaseKey(h, *size - 1, v, d);
     
 }

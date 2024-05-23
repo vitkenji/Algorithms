@@ -5,7 +5,7 @@ Heap* createHeap(int size)
     Heap* h = (Heap*) malloc(sizeof(Heap));
     h->vertices = (int*) malloc(sizeof(int)*size);
     h->distance = (int*) malloc(sizeof(int)*size);
-    h->visited = (int*) malloc(sizeof(int)*size);
+
 }
 
 int parent(int i)
@@ -68,9 +68,6 @@ void swap(Heap* h, int pos1, int pos2)
     h->vertices[pos1] = h->vertices[pos2];
     h->vertices[pos2] = aux;
 
-    aux = h->visited[pos1];
-    h->visited[pos1] = h->visited[pos2];
-    h->visited[pos2] = aux;
 }
 
 void printArray(int* array, int size)

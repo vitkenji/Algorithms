@@ -6,7 +6,7 @@ typedef struct
 {
     int* vertices;
     int* distance;
-    int* visited;
+
 }Heap;
 
 Heap* createHeap(int size);

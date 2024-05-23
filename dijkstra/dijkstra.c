@@ -13,30 +13,40 @@ void initializeSingleSource(LGraph** G, Heap* h, int* queueSize)
 
 void dijkstra(LGraph* G, int s)
 {
-    int weight;
+    int weight; int smallest = INT_MAX; int smallestId;
     Heap* h = createHeap(G->V);
     int queueSize = 0;
 
     initializeSingleSource(&G, h, &queueSize);
 
-    while(queueSize > 0)
-    {
+    while(queueSize > 1)
+    {   
+        smallest = INT_MAX; smallestId = -1;
         int u = heapExtractMin(h, &queueSize);
-
         Node* aux = G->adj[u];
-
+        
         while(aux != NULL && aux->id != INT_MAX)
         {
             int v = aux->id;
             weight = aux->weight;
 
+            if(smallest > weight)
+            {
+                smallest = weight;
+                smallestId = v;
+            }
+            
             if(G->adj[v]->distance > G->adj[u]->distance + weight)
             {
-                G->adj[v]->distance = G->adj[u]->distance + weight;
-                heapDecreaseKey(h, findIndex(h, v, queueSize), v, G->adj[v]->distance);
+               G->adj[v]->distance = G->adj[u]->distance + weight;
+               h->distance[findIndex(h, queueSize, v)] =  G->adj[u]->distance + weight;
             }
+            //printf("smallestId: %d\n", smallestId);
             aux = aux->next;
         }
+      
+        swap(h, 0, findIndex(h, queueSize, smallestId));
+
     }
 
     printf("Dijkstra: \n");
