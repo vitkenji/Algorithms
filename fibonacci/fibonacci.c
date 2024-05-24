@@ -19,3 +19,25 @@ int betterFibonacci(int n)
     }
     return array[n];
 }
+
+int bestFibonacci(int n)
+{
+    int matrix[2][2] = {{1, 1}, {1, 0}};
+    multiply(matrix, matrix);
+    
+
+    return matrix[1][0];
+}
+
+void multiply(int** m1, int** m2)
+{
+    m1[0][0] = m1[0][0]*m2[0][0] + m1[0][1]*m2[1][0];
+    m1[1][0] = m1[1][0]*m2[0][0] + m1[1][1]*m2[1][0];
+    m1[0][1] = m1[0][0]*m2[0][1] + m1[0][1]*m2[1][1];
+    m1[1][1] = m1[1][0]*m2[1][1] + m1[1][1]*m2[1][1];
+}
+
+void power(int* matrix, int exp)
+{
+
+}

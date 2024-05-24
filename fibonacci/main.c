@@ -2,7 +2,7 @@
 
 int main()
 {
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < 47; i++)
     {
         printf("%d ", betterFibonacci(i));
     }

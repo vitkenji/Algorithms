@@ -34,6 +34,7 @@ void dijkstra(LGraph* G, int s)
             {
                 smallest = weight;
                 smallestId = v;
+                heapDecreaseKey();
             }
             
             if(G->adj[v]->distance > G->adj[u]->distance + weight)
