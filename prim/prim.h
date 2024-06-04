@@ -1,5 +1,5 @@
-#include "graph.h"
 #include "priorityQueue.h"
-#include <stdbool.h>
+#include "graph.h"
 
-void prim(MGraph* G, int size);
+void prim(LGraph* G);
+void printPrim(LGraph* G);
