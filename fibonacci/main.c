@@ -2,8 +2,9 @@
 
 int main()
 {
-   /** for(int i = 0; i < 47; i++)
+    for(int i = 0; i < 47; i++)
     {
-        printf("%d ", bestFibonacci(i));
+        printf("%d ", worstFibonacci(i));
     }
+    return 0;
 }
