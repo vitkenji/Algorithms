@@ -22,40 +22,43 @@ int betterFibonacci(int n)
 
 int bestFibonacci(int n)
 {
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+
     int matrix[2][2] = {{1, 1}, {1, 0}};
-    power(matrix, n);
-    for(int i = 0; i < 2; i++)
-    {
-        for(int j = 0; j < 2; j++)
-        {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
-    power(matrix, n);
-    
-    return matrix[1][0];
-    
+    power(matrix, n - 1);
+
+    return matrix[0][0];
 }
 
-void multiply(int m1[2][2])
+void multiply(int m1[2][2], int m2[2][2])
 {
-    int m2[2][2] = {{1, 1}, {1, 0}};
-    m1[0][0] = m1[0][0]*m2[0][0] + m1[0][1]*m2[1][0];
-    m1[1][0] = m1[1][0]*m2[0][0] + m1[1][1]*m2[1][0];
-    m1[0][1] = m1[0][1]*m2[0][1] + m1[0][1]*m2[1][1];
-    m1[1][1] = m1[1][0]*m2[0][1] + m1[1][1]*m2[1][1];
+    int a = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0];
+    int b = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1];
+    int c = m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0];
+    int d = m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1];
+
+    m1[0][0] = a;
+    m1[0][1] = b;
+    m1[1][0] = c;
+    m1[1][1] = d;
 }
 
 void power(int matrix[2][2], int exp)
 {
-    int base[2][2] = {{1, 1},{1, 0}};
-    if(exp == 0 || exp == 1)
-    {
+    if (exp == 0 || exp == 1)
         return;
-    }
+
+    int base[2][2] = {{1, 1}, {1, 0}};
+
     power(matrix, exp / 2);
-    multiply(matrix);
+    multiply(matrix, matrix);
 
-
+    if (exp % 2 != 0)
+    {
+        int temp[2][2] = {{1, 1}, {1, 0}};
+        multiply(matrix, temp);
+    }
 }
