@@ -13,6 +13,7 @@ int heapExtractMin(Heap* h)
         exit(1);
     }
     int min = heapMinimum(h);
+    h->position[min] = -1;
     h->vertices[0] = h->vertices[h->size - 1];
     h->key[0] = h->key[h->size - 1];
     h->size--;
@@ -23,6 +24,7 @@ int heapExtractMin(Heap* h)
 
 void heapDecreaseKey(Heap* h, int index, int d)
 {
+    //printf("%d > %d ", d, h->key[index]);
   if(d > h->key[index])
     {
         printf("new key is higher than actual key");
@@ -47,7 +49,8 @@ void minHeapInsert(Heap* h, int v, int d)
 }
 
 int isInHeap(Heap* h, int v)
-{
-    if(h->position[v] != -1){ return 1; }
+{  
+    //printf("%d %d", v, h->position[v]);
+    if(h->position[v] != -1 && h->position[v] <= h->size){ return 1; }
     return 0;
 }

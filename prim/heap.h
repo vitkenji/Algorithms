@@ -8,6 +8,7 @@ typedef struct
     int* key;
     int* position;
     int size;
+    int posSize;
 }Heap;
 
 Heap* createHeap(int size);

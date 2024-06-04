@@ -7,6 +7,7 @@ Heap* createHeap(int size)
     h->key = (int*) malloc(sizeof(int)*size);
     h->position = (int*) malloc(sizeof(int)*size);
     h->size = size;
+    h->posSize = size;
 }
 
 int parent(int i)
