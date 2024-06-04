@@ -1,55 +1,47 @@
 #include "dijkstra.h"
 
-void initializeSingleSource(LGraph** G, Heap* h, int* queueSize)
+void initializeSingleSource(LGraph** G, Heap* h)
 {
-    for(int v = 0; v < (*G)->V; v++)
+    for(int i = 0; i < (*G)->V; i++)
     {
-        (*G)->adj[v]->distance = INT_MAX;
-        minHeapInsert(h, queueSize, v, (*G)->adj[v]->distance);
+        h->vertices[i] = i;
+        h->position[h->vertices[i]] = i;
+        h->distance[i] = 100;
+        (*G)->adj[i]->distance = 100;
     }
+    h->distance[0] = 0;
     (*G)->adj[0]->distance = 0;
-    heapDecreaseKey(h, 0, 0, 0);
 }
 
 void dijkstra(LGraph* G, int s)
 {
-    int weight; int smallest = INT_MAX; int smallestId;
     Heap* h = createHeap(G->V);
-    int queueSize = 0;
+    initializeSingleSource(&G, h);
 
-    initializeSingleSource(&G, h, &queueSize);
-
-    while(queueSize > 1)
-    {   
-        smallest = INT_MAX; smallestId = -1;
-        int u = heapExtractMin(h, &queueSize);
-        Node* aux = G->adj[u];
+    while(h->size > 0)
+    {
+        //printArray(h->vertices, h->size);
+        //printArray(h->distance, h->size);
+        //printArray(h->position, h->size);
         
+        int u = heapExtractMin(h);
+        //printf("\n%d: ", u);
+        Node* aux = G->adj[u];
         while(aux != NULL && aux->id != INT_MAX)
         {
             int v = aux->id;
-            weight = aux->weight;
-
-            if(smallest > weight)
+            //printf("%d ", v);
+            //printf("(%d)%d > (%d)%d + %d\n",v, G->adj[v]->distance,u, G->adj[u]->distance, aux->weight);
+            if(G->adj[v]->distance > G->adj[u]->distance + aux->weight)
             {
-                smallest = weight;
-                smallestId = v;
-                heapDecreaseKey();
+                //printf("(%d)%d > (%d)%d + %d\n",v, G->adj[v]->distance,u, aux->distance, aux->weight);
+                G->adj[v]->distance = G->adj[u]->distance + aux->weight;
+                heapDecreaseKey(h, h->position[v], G->adj[u]->distance + aux->weight); 
             }
-            
-            if(G->adj[v]->distance > G->adj[u]->distance + weight)
-            {
-               G->adj[v]->distance = G->adj[u]->distance + weight;
-               h->distance[findIndex(h, queueSize, v)] =  G->adj[u]->distance + weight;
-            }
-            //printf("smallestId: %d\n", smallestId);
             aux = aux->next;
         }
-      
-        swap(h, 0, findIndex(h, queueSize, smallestId));
-
     }
-
+    
     printf("Dijkstra: \n");
     for(int v = 0; v < G->V; v++)
     {

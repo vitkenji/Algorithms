@@ -6,15 +6,16 @@ typedef struct
 {
     int* vertices;
     int* distance;
-
+    int* position;
+    int size;
 }Heap;
 
 Heap* createHeap(int size);
 int parent(int i);
 int left(int i);
 int right(int i);
-void minHeapify(Heap* h, int size, int index);
-void buildMinHeap(Heap* h, int size);
+void minHeapify(Heap* h, int index);
+void buildMinHeap(Heap* h);
 
 void swap(Heap* h, int pos1, int pos2);
 void printArray(int* array, int size);

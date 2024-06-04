@@ -5,23 +5,23 @@ int heapMinimum(Heap* h)
     return h->vertices[0];
 }
 
-int heapExtractMin(Heap* h, int* size)
+int heapExtractMin(Heap* h)
 {
-    if(*size < 1)
+    if(h->size < 1)
     {
         printf("heap underflow");
         exit(1);
     }
-    int min = h->vertices[0];
-    h->vertices[0] = h->vertices[*size - 1];
-    h->distance[0] = h->distance[*size - 1];
-    (*size)--;
-    minHeapify(h, *size, 0);
+    int min = heapMinimum(h);
+    h->vertices[0] = h->vertices[h->size - 1];
+    h->distance[0] = h->distance[h->size - 1];
+    h->size--;
+    minHeapify(h, 0);
     return min;
 
 }
 
-void heapDecreaseKey(Heap* h, int index, int v, int d)
+void heapDecreaseKey(Heap* h, int index, int d)
 {
   if(d > h->distance[index])
     {
@@ -29,7 +29,6 @@ void heapDecreaseKey(Heap* h, int index, int v, int d)
         exit(1);
     }
     h->distance[index] = d;
-    h->vertices[index] = v;
     while(index > 0 && h->distance[parent(index)] > h->distance[index])
     {
         swap(h, index, parent(index));
@@ -37,12 +36,12 @@ void heapDecreaseKey(Heap* h, int index, int v, int d)
     }
 }
 
-void minHeapInsert(Heap* h, int* size, int v, int d)
+void minHeapInsert(Heap* h, int v, int d)
 {
-    (*size)++;
-    h->vertices[(*size)-1 ] = abs(INT_MAX);
-    h->distance[(*size) - 1] = abs(INT_MAX);
-
-    heapDecreaseKey(h, *size - 1, v, d);
+    h->size++;
+    h->vertices[h->size - 1] = v;
+    h->distance[h->size - 1] = d;
+    h->position[v] = h->size - 1;
+    heapDecreaseKey(h, v, d);
     
 }
