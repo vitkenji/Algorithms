@@ -10,8 +10,8 @@ int main()
    InsertEdgeList(G, 2, 5);
    InsertEdgeList(G, 2, 6);
    
-   
    printLGraph(G, 7);
    BFS(G, 0);
+   
     return 0;
 }
