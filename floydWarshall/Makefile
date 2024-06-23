@@ -1,2 +1,2 @@
 all:
-	gcc main.c floydWarshall.c -o main
+	gcc main.c floydWarshall.c graph.c -o main

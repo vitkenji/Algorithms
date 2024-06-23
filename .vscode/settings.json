@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "array": "c",
-    "cmath": "c"
+    "cmath": "c",
+    "floydwarshall.h": "c"
   }
 }
