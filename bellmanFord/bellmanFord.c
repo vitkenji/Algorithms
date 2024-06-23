@@ -31,6 +31,24 @@ bool bellmanFord(LGraph* G)
         }
     }
     printBellmanFord(G);
+    int u = 0;
+    while(u < G->V)
+    {
+        Node* aux = G->adj[u];
+        while(aux != NULL && aux->id != INT_MAX)
+        {
+            printf("%d %d \n", u, aux->id);
+            int v = aux->id;
+            //printf("%d > %d + %d \n", G->adj[v]->distance, aux->id);
+            if(G->adj[v]->distance > G->adj[u]->distance + aux->weight)
+            {
+                return false;
+            }
+            aux = aux->next;
+        }
+        u++;
+    }
+
     return true;
 }
 
