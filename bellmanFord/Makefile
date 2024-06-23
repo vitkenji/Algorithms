@@ -1,2 +1,2 @@
 all:
-	gcc main.c bellmanFord.c -o main
+	gcc main.c bellmanFord.c graph.c -o main

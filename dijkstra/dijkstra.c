@@ -47,3 +47,8 @@ void printDijkstra(LGraph* G)
         printf("0 -> %d =  %d\n", v, G->adj[v]->distance);
     }
 }
+
+void relax(LGraph** G, int v, int u)
+{
+
+}
