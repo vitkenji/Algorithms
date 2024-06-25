@@ -111,3 +111,16 @@ void printMatrix(int** c, char* x, char* y, int m, int n)
     }
 }
 
+
+int worstLCS(char* X, char* Y, int i, int j)
+{
+    if (X[i] == 0 || Y[j] == 0)
+        return 0;
+    if (X[i] == Y[j])
+        return 1 + worstLCS(X, Y, i + 1, j + 1);
+    else
+        return max(worstLCS(X, Y, i, j + 1),
+                   worstLCS(X, Y, i + 1, j));
+}
+
+int max(int a, int b) { return (a > b) ? a : b; }
