@@ -1,2 +1,2 @@
 all:
-	gcc main.c fordFulkerson.c -o main
+	gcc main.c fordFulkerson.c graph.c dfs.c -o main
