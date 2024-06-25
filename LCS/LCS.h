@@ -1,4 +1,5 @@
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
-int LCS(char* c1, char* c2);
+int LCS(char* x, char* y);

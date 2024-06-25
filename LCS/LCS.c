@@ -1,6 +1,45 @@
 #include "LCS.h"
 
-int LCS(char* c1, char* c2)
+int LCS(char* x, char* y)
 {
-    return 0;
+    int m = strlen(x);
+    int n = strlen(y);
+    int c[m + 1][n + 1];
+
+    for(int i = 0; i <= m; i++)
+    {
+        c[i][0] = 0;
+    }
+    for(int i = 0; i <= n; i++)
+    {
+        c[0][i] = 0;
+    }
+
+    for(int i = 1; i <= m; i++)
+    {
+        for(int j = 1; j <= n; j++)
+        {
+            if(x[i - 1] == y[j - 1])
+            {
+                c[i][j] = c[i-1][j-1] + 1;
+            }
+            else
+            {
+                if(c[i -1][j] > c[i][j - 1]){c[i][j] = c[i-1][j];}
+                else{c[i][j] = c[i][j - 1];}
+            }
+            
+        }
+    }
+
+    for(int i = 0; i <= m; i++)
+    {
+        for(int j = 0; j<= n; j++)
+        {
+            printf("%d ", c[i][j]);
+        }
+        printf("\n");
+    }
+
+    return c[m][n];
 }
