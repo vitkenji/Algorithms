@@ -21,10 +21,7 @@ bool bellmanFord(LGraph* G)
             while(aux != NULL && aux->id != INT_MAX)
             {
                 int v = aux->id;
-                if(G->adj[v]->distance > G->adj[u]->distance + aux->weight)
-                {
-                    G->adj[v]->distance = G->adj[u]->distance + aux->weight;
-                }
+                relax(&G, v, u, aux->weight);
                 aux = aux->next;
             }
             u++;
@@ -50,6 +47,14 @@ bool bellmanFord(LGraph* G)
     }
 
     return true;
+}
+
+void relax(LGraph** G, int v, int u, int w)
+{
+    if((*G)->adj[v]->distance > (*G)->adj[u]->distance + w)
+    {
+        (*G)->adj[v]->distance = (*G)->adj[u]->distance + w;
+    }
 }
 
 void printBellmanFord(LGraph* G)

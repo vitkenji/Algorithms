@@ -3,6 +3,6 @@
 
 void initializeSingleSource(LGraph** G, Heap* h);
 void dijkstra(LGraph* G, int s);
-void relax(LGraph** G, int v, int u);
+void relax(LGraph** G, Heap* h,int v, int u, int w);
 
 void printDijkstra(LGraph* G);

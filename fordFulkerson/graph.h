@@ -10,6 +10,7 @@ typedef struct node
     int parent;
     int weight;
     int color;
+    int flow;
 
 }Node;
 

@@ -26,12 +26,7 @@ void dijkstra(LGraph* G, int s)
         while(aux != NULL && aux->id != INT_MAX)
         {
             int v = aux->id;
-   
-            if(G->adj[v]->distance > G->adj[u]->distance + aux->weight)
-            {
-                G->adj[v]->distance = G->adj[u]->distance + aux->weight;
-                heapDecreaseKey(h, h->position[v], G->adj[u]->distance + aux->weight); 
-            }
+            relax(&G, h, v, u, aux->weight);
             aux = aux->next;
         }
     }
@@ -48,7 +43,11 @@ void printDijkstra(LGraph* G)
     }
 }
 
-void relax(LGraph** G, int v, int u)
+void relax(LGraph** G, Heap* h, int v, int u, int w)
 {
-
+    if((*G)->adj[v]->distance > (*G)->adj[u]->distance + w)
+    {
+        (*G)->adj[v]->distance = (*G)->adj[u]->distance + w;
+        heapDecreaseKey(h, h->position[v], (*G)->adj[u]->distance + w);
+    }
 }

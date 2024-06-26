@@ -2,7 +2,7 @@
 
 int main()
 {
-    
+    /*
     LGraph* G = createLGraph(5);
     InsertWeightEdgeListDirectional( G, 0, 1, 4);
     InsertWeightEdgeListDirectional( G, 0, 2, 2);
@@ -15,8 +15,8 @@ int main()
     InsertWeightEdgeListDirectional( G, 4, 3, 1);
     correctAdj(G);
     printLGraphWeight(G, 5);
-    
-   /*
+    */
+   
    LGraph* G = createLGraph(5);
     InsertWeightEdgeListDirectional( G, 0, 1, 10);
     InsertWeightEdgeListDirectional( G, 0, 2, 3);
